@@ -1,0 +1,4 @@
+# Binary Files
+**/*.csv
+**/*.rds
+**/*.xls

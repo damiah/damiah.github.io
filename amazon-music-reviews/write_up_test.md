@@ -12,11 +12,10 @@ Our model learns weights for each album in vector space in such a way that it op
 ![Embeddings](https://i.imgur.com/ugxb7Yt.jpg)
 
 
-We can see that albums that are close in 'sound' are closer. Rap albums The Eminem Show and Get Rich or Die Tryin are bunched together and shifted to the left of the visual, and albums Lateralus, St. Anger, and Aenima are bunched in a similar way. This is all without knowing anything about the content of the albums.
+We can see that albums that are close in 'sound' are closer. Rap albums The Eminem Show and Get Rich or Die Tryin are bunched together and shifted to the left of the visual, and albums Lateralus, St. Anger, and Aenima are bunched in a similar way. This is all without knowing anything about the content of the album - just who purchased them.
 
 
-
-
+![Similar albums](https://i.imgur.com/XPDxbMJ.png)
 
 
 

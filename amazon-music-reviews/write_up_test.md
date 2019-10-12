@@ -25,10 +25,17 @@ The albums identified as closest in space can be deemed as similar, and can then
 
 
 #### The final model
+
+The beauty of this model is it's simplicity. We separate users (customers) and items (albums) into two matrices of their cardinality in length (seen below as n_users and n_items).
+Our output (1 or 0) is produced through the matrix multiplication of these two matrices.
+The 'things that we are learning' is each customer and albums weight's in n_dim space.
+n_dim is the dimensionality that we force the model to learn. the could be any number equal to or larger than 1.
+
+
 ```Python
 class EmbeddingModel(Module):
     #initiate the weights and biases of user and product.
-    #these need to be leared through forward pass
+    #these need to be leared through backward pass
     def __init__(self, n_dims, n_users, n_items):
         super(EmbeddingModel, self).__init__()
         (self.u_weight, self.i_weight, self.u_bias, self.i_bias) = [get_embs(*o) for o in [
@@ -45,8 +52,6 @@ class EmbeddingModel(Module):
 #### Training the model
 
 ```Python
-import math
-import torch.nn.functional as F
 df_new = music_dataset()
 ds = DataLoader(df_new, batch_size=64, shuffle=True)
 

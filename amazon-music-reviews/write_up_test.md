@@ -26,7 +26,8 @@ The albums identified as closest in space can be deemed as similar, and can then
 
 #### The final model
 
-The beauty of this model is it's simplicity. We separate users (customers) and items (albums) into two matrices of their cardinality in length (seen below as n_users and n_items).
+The beauty of this model is it's simplicity. We separate users (customers) and items (albums) into two matrices of their cardinality in length (seen below as n_users and n_items). 
+The matrix multiplication between these two essentially just links the customers and albums together. The alternative to this is to have one very sparse matrix, but that is far more memory intensive as we have to hold information for every combination of customer and album.
 Our output (1 or 0) is produced through the matrix multiplication of these two matrices.
 The 'things that we are learning' is each customer and albums weight's in n_dim space.
 n_dim is the dimensionality that we force the model to learn. the could be any number equal to or larger than 1.

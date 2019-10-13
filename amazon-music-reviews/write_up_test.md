@@ -21,8 +21,20 @@ The albums identified as closest in space can be deemed as similar, and can then
 
 ### Technical details
 
-#### The dataset
+#### The dataset and approach
 
+The [dataset](http://jmcauley.ucsd.edu/data/amazon/) used is a snapshot of music purchases from amazon.com.  
+ 
+ 
+> This dataset contains product reviews and metadata from Amazon, including 142.8 million reviews spanning May 1996 - July 2014.
+  
+
+![dataset](https://i.imgur.com/QUiSDzg.png)
+
+  
+An important thing to note is that the vast majority of reviewers of albums rate them very highly, as expected they are likely already familar with the artist, thus the review rating itself is not terribly useful for our problem. A naive attempt early on to disregard this quirk led to the model tossing up silly album recommendations.
+  
+We instead treat this as a classification problem (binary); whether the customer purchased the album or not. In order to do this we have to generate negative samples (albums the customer didn't purchase) for each customer, in order for our model to learn important things about our albums and customers.
 
 #### The final model
 
@@ -97,4 +109,4 @@ for epoch in range(max_epochs):
 
 #### Lessons learned
 
-
+- Initialising the weights at the beginning of training is more important than I had originally thought; giving the model a helping hand to find a 'good' weight space heps immenseley. 

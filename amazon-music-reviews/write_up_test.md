@@ -41,6 +41,8 @@ We instead treat this as a classification problem (binary); whether the customer
 The beauty of this model is it's simplicity. We separate users (customers) and items (albums) into two matrices of their cardinality in length (seen below as n_users and n_items). We then multiply the two matrices together and run each output from the resulting matrix through the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) which squeezes the output between 0 and 1.
 The 'things that we are learning' are each customer and albums weight's in n_dim space.
  
+ ![model diagram](https://i.imgur.com/6CQ6P4c.png) 
+ 
 The matrix multiplication between these two just essentially links the customers and albums together. The alternative to this is to have one very sparse matrix, but that is far more memory intensive, as we would have to hold information for every combination of customer and album.  
  
 n_dim is the dimensionality that we force the model to learn in. the could be any number equal to or larger than 1. In this case we force the model to learn 40 dimensional vectors for every customer and album. This idea of 'learned embeddings/representations' can be difficult to grasp (see [Dmitriy Genzel's quora answer](https://www.quora.com/What-is-the-difference-between-an-embedding-and-the-hidden-layer-of-an-autoencoder)).
@@ -112,4 +114,13 @@ for epoch in range(max_epochs):
 
 ## Lessons learned
 
-- Initialising the weights at the beginning of training is more important than I had originally thought; giving the model a helping hand to find a 'good' weight space heps immenseley. 
+- Initialising the weights at the beginning of training is more important than I had originally thought; giving the model a helping hand to find a 'good' weight space heps immensely. 
+
+- Scheduling learning rates is a great way to train more efficiently. It almost has to be done.
+
+- Learn when to quit. If a model doesn't significantly drop in loss over the first few mini-batches, it's a good sign that something's wrong.
+
+- Efficient batch loading is very important - you can create a massive bottleneck at the start of the training if your data is taking too long to fetch. Sometimes it's not immediately clear that this could be a problem, at small scale as the time saving might not seem significant.
+
+
+

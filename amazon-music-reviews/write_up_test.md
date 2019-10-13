@@ -120,7 +120,7 @@ for epoch in range(max_epochs):
 
 - Learn when to quit. If a model doesn't significantly drop in loss over the first few mini-batches, it's a good sign that something's wrong.
 
-- Efficient batch loading is very important - you can create a massive bottleneck at the start of the training if your data is taking too long to fetch. Sometimes it's not immediately clear that this could be a problem, at small scale as the time saving might not seem significant.
+- Efficient batch loading is very important - you can create a massive bottleneck at the start of the training if your data is taking too long to fetch. Sometimes it's not immediately clear that this could be a problem, at least at small scale, as the time saving might not seem significant.
 
 
 

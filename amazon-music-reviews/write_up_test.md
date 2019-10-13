@@ -43,8 +43,11 @@ The 'things that we are learning' are each customer and albums weight's in n_dim
  
 The matrix multiplication between these two just essentially links the customers and albums together. The alternative to this is to have one very sparse matrix, but that is far more memory intensive, as we would have to hold information for every combination of customer and album.  
  
-n_dim is the dimensionality that we force the model to learn in. the could be any number equal to or larger than 1. In this case we force the model to learn 40 dimensional vectors for every customer and album. This idea of 'learned embeddings/representations' can be difficult to grasp (see [Dmitriy Genzel's quora answer](https://www.quora.com/What-is-the-difference-between-an-embedding-and-the-hidden-layer-of-an-autoencoder))
-
+n_dim is the dimensionality that we force the model to learn in. the could be any number equal to or larger than 1. In this case we force the model to learn 40 dimensional vectors for every customer and album. This idea of 'learned embeddings/representations' can be difficult to grasp (see [Dmitriy Genzel's quora answer](https://www.quora.com/What-is-the-difference-between-an-embedding-and-the-hidden-layer-of-an-autoencoder)).
+  
+We haven't added any additional layers so we can't call this deep learning. But it's still cool.
+  
+  
 
 ```Python
 class EmbeddingModel(Module):
@@ -64,6 +67,9 @@ class EmbeddingModel(Module):
         return torch.sigmoid(out)
 ```
 ### Training the model
+
+We train this model using mini-batch gradient descent of size 64 and we schedule the learning rates with cyclically.
+
 
 ```Python
 df_new = music_dataset()

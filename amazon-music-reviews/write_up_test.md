@@ -6,7 +6,7 @@ To understand at a high level how 'embeddings' work, how to apply deep learning 
 
 After following Jeremy Howard's fantastic fast.ai collaborative filtering lessons, I wanted to produce a recommender using PyTorch (what the fast.ai library is built atop of). I thought it would be cool to see if I could build a low-fi music recommender.
 
-### Final output(s)
+## Final output(s)
 Our model learns weights for each album in vector space in such a way that it optimises our loss (error) during classification. Below is how each album looks after dimensionality reduction using PCA.
 
 ![Embeddings](https://i.imgur.com/ugxb7Yt.jpg)
@@ -15,13 +15,13 @@ Our model learns weights for each album in vector space in such a way that it op
 We can see that albums that are close in 'sound' are closer in space. Rap albums The Eminem Show and Get Rich or Die Tryin are bunched together and shifted to the left of the visual, and albums Lateralus, St. Anger, and Aenima are bunched in a similar way. This is all without knowing anything about the content of the album - just who purchased them.
 
 
-![Similar albums](https://i.imgur.com/XPDxbMJ.png)
+<p align="center"><img src="https://i.imgur.com/XPDxbMJ.png" /></p>
 
 The albums identified as closest in space can be deemed as similar, and can then be used as recommendations.
 
-### Technical details
+## Technical details
 
-#### The dataset and approach
+### The dataset and approach
 
 The [dataset](http://jmcauley.ucsd.edu/data/amazon/) used is a snapshot of music purchases from amazon.com.  
  
@@ -36,17 +36,14 @@ An important thing to note is that the vast majority of reviewers of albums rate
   
 We instead treat this as a classification problem (binary); whether the customer purchased the album or not. In order to do this we have to generate negative samples (albums the customer didn't purchase) for each customer, in order for our model to learn important things about our albums and customers.
 
-#### The final model
+### The final model
 
-The beauty of this model is it's simplicity. We separate users (customers) and items (albums) into two matrices of their cardinality in length (seen below as n_users and n_items).  
-
- 
-The matrix multiplication between these two essentially just links the customers and albums together. The alternative to this is to have one very sparse matrix, but that is far more memory intensive as we have to hold information for every combination of customer and album.  
- 
- 
-Our output (1 or 0) is produced through the matrix multiplication of these two matrices.
+The beauty of this model is it's simplicity. We separate users (customers) and items (albums) into two matrices of their cardinality in length (seen below as n_users and n_items). We then multiply the two matrices together and run each output from the resulting matrix through the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) which squeezes the output between 0 and 1.
 The 'things that we are learning' are each customer and albums weight's in n_dim space.
-n_dim is the dimensionality that we force the model to learn. the could be any number equal to or larger than 1.
+ 
+The matrix multiplication between these two just essentially links the customers and albums together. The alternative to this is to have one very sparse matrix, but that is far more memory intensive, as we would have to hold information for every combination of customer and album.  
+ 
+n_dim is the dimensionality that we force the model to learn in. the could be any number equal to or larger than 1. In this case we force the model to learn 40 dimensional vectors for every customer and album. This idea of 'learned embeddings/representations' can be difficult to grasp (see [Dmitriy Genzel's quora answer](https://www.quora.com/What-is-the-difference-between-an-embedding-and-the-hidden-layer-of-an-autoencoder))
 
 
 ```Python
@@ -66,7 +63,7 @@ class EmbeddingModel(Module):
         #run output through a sigmoid
         return torch.sigmoid(out)
 ```
-#### Training the model
+### Training the model
 
 ```Python
 df_new = music_dataset()
@@ -107,6 +104,6 @@ for epoch in range(max_epochs):
             print(loss.data.item())  
 ```
 
-#### Lessons learned
+## Lessons learned
 
 - Initialising the weights at the beginning of training is more important than I had originally thought; giving the model a helping hand to find a 'good' weight space heps immenseley. 

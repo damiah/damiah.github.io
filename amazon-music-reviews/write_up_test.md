@@ -122,5 +122,5 @@ for epoch in range(max_epochs):
 
 - Efficient batch loading is very important - you can create a massive bottleneck at the start of the training if your data is taking too long to fetch. Sometimes it's not immediately clear that this could be a problem, at least at small scale, as the time saving might not seem significant.
 
-
+For complete code on final model notebook [here](https://github.com/damiah/damiah.github.io/blob/master/amazon-music-reviews/final-model.ipynb), and rough workings notebook [here](https://github.com/damiah/damiah.github.io/blob/master/amazon-music-reviews/recommender-pytorch.ipynb)
 

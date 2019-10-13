@@ -41,7 +41,7 @@ We instead treat this as a classification problem (binary); whether the customer
 The beauty of this model is it's simplicity. We separate users (customers) and items (albums) into two matrices of their cardinality in length (seen below as n_users and n_items). We then multiply the two matrices together and run each output from the resulting matrix through the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) which squeezes the output between 0 and 1.
 The 'things that we are learning' are each customer and albums weight's in n_dim space.
  
- ![model diagram](https://i.imgur.com/6CQ6P4c.png) 
+ ![model diagram](https://i.imgur.com/xK67cXB.png) 
  
 The matrix multiplication between these two just essentially links the customers and albums together. The alternative to this is to have one very sparse matrix, but that is far more memory intensive, as we would have to hold information for every combination of customer and album.  
  
@@ -70,7 +70,7 @@ class EmbeddingModel(Module):
 ```
 ### Training the model
 
-We train this model using mini-batch gradient descent of size 64 and we schedule the learning rates with cyclically.
+We train this model using mini-batch gradient descent of size 64 and we schedule [cyclical learning rates](https://arxiv.org/pdf/1506.01186.pdf).
 
 
 ```Python

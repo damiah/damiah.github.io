@@ -3,5 +3,7 @@
 **/*.rds
 *.Rdata
 **/*.xls
-#pkl
+#python data
 **/*.pkl
+**/*.pth
+**/*.tgz

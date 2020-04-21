@@ -3,3 +3,5 @@
 **/*.rds
 *.Rdata
 **/*.xls
+#pkl
+**/*.pkl
